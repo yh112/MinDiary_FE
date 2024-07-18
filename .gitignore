@@ -80,3 +80,9 @@ $RECYCLE.BIN/
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,yarn,visualstudiocode,react
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
