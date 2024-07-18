@@ -1,20 +1,38 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
-    const navigate = useNavigate();
+  const clientId = process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID;
+  console.log(clientId);
 
-    const onClick = () => {
-        navigate('/main');
-    }
+  const navigate = useNavigate();
 
-    return (
-        <div style={{ border: "1px solid black" }}>
-            로그인 화면
-            <br />
-            <button onClick={onClick}>로그인</button>
+  const onClick = () => {
+    navigate("/main");
+  };
+
+  return (
+     <>
+      <GoogleOAuthProvider clientId={clientId}>
+        <div className="login-page">
+          <div className="login-container">
+            <p>Login</p>
+            <GoogleLogin
+              onSuccess={(res) => {
+                console.log(jwtDecode(res.credential));
+                onClick();
+              }}
+              onFailure={(err) => {
+                console.log(err);
+              }}
+            />
+          </div>
         </div>
-    );
+      </GoogleOAuthProvider>
+    </>
+  );
 };
 
 export default Login;

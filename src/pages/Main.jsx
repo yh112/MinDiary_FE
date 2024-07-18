@@ -5,7 +5,7 @@ const Main = () => {
     const navigate = useNavigate();
     return (
         <div style={{ border: "1px solid black" }}>
-            메인 페이지sss
+            메인 페이지
             <button onClick={() => { navigate('/analyze') }}>분석뷰</button>
             <button onClick={() => { navigate('/calendar') }}>달력</button>
         </div>
