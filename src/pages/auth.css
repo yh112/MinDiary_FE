@@ -1,0 +1,143 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.login-page,
+.signup-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #2353b5 50%, #ffffff 50%);
+}
+
+.page-title {
+  font-size: 28px;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #ffffff; /* 텍스트 색상을 흰색으로 설정 */
+}
+
+.login-container,
+.signup-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 450px; /* 너비 설정 */
+  max-width: 90%; /* 작은 화면에서 너비 제한 */
+}
+
+.signup-container {
+  background-color: #fff;
+  color: #2353b5;
+}
+
+.login-form,
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-wrapper input {
+  flex-grow: 1;
+}
+
+.login-form label,
+.signup-form label {
+  font-size: 16px;
+  text-align: left;
+  color: #2353b5;
+}
+
+.signup-form label {
+  color: #2353b5;
+}
+
+.signup-form input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  background-color: #f5f4f7; /* 입력 박스 배경색 설정 */
+}
+.login-form input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 90%;
+  background-color: #f5f4f7;
+}
+.check-button {
+  padding: 8px 12px;
+  background-color: transparent;
+  color: #2353b5;
+  border: 2px solid #2353b5;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.login-button,
+.register-button,
+.signup-button {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.login-button {
+  background-color: transparent;
+  color: #2353b5;
+  border: 2px solid #2353b5;
+}
+
+.register-button {
+  background-color: #2353b5;
+  color: #fff;
+}
+
+.signup-button {
+  background-color: #2353b5;
+  color: #fff;
+  border: 2px solid #2353b5;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.social-login {
+  margin-top: 25px;
+}
+
+.social-login p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}

@@ -1,14 +1,14 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Header from "./Header/Header";
 
 const Layout = () => {
-    return (
-        <div style={{ border: "1px solid black" }}>
-            레이아웃
-            <Outlet />
-        </div>
-    );
+  return (
+    <div style={{ border: "1px solid black" }}>
+      <Header />
+      <Outlet />
+    </div>
+  );
 };
 
 export default Layout;
