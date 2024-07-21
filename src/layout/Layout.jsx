@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 
 const Layout = () => {
   return (
-    <div style={{ border: "1px solid black" }}>
+    <div>
       <Header />
       <Outlet />
     </div>

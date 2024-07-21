@@ -20,7 +20,7 @@ html {
   font-size: 28px;
   margin-bottom: 25px;
   text-align: center;
-  color: #ffffff; /* 텍스트 색상을 흰색으로 설정 */
+  color: #ffffff;
 }
 
 .login-container,
@@ -30,8 +30,8 @@ html {
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: left;
-  width: 450px; /* 너비 설정 */
-  max-width: 90%; /* 작은 화면에서 너비 제한 */
+  width: 450px;
+  max-width: 90%;
 }
 
 .signup-container {
@@ -78,7 +78,7 @@ html {
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
-  background-color: #f5f4f7; /* 입력 박스 배경색 설정 */
+  background-color: #f5f4f7;
 }
 .login-form input {
   padding: 12px;

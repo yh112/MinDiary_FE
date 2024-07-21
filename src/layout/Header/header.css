@@ -8,13 +8,13 @@
 }
 
 .logo {
-  width: 80px; /* Adjust the width as needed */
-  height: 40px; /* Adjust the height as needed */
+  width: 80px;
+  height: 40px;
   background-color: #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0056b3; /* Blue color for the text */
+  color: #0056b3;
   font-weight: bold;
   border-radius: 5px;
 }
