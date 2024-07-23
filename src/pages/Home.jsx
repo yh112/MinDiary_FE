@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import landingImage from "../landing.png";
+import landingImage from "../images/Landing.png";
 import "../styles/Home.scss";
 
 const Home = () => {

@@ -73,9 +73,16 @@ const AnalyzeView = () => {
 
   return (
     <div className="analysis-page">
+      <div className="analysis-title">EMOTION ANALYSIS</div>
       <div className="chart-container">
-        <Chart data={lastweekData} lastweek="true" />
-        <Chart data={thisweekData} lastweek="false" />
+        <div className="chart">
+          <div className="chart-title">This Week</div>
+          <Chart data={lastweekData} lastweek="true" />
+        </div>
+        <div className="chart">
+          <div className="chart-title">Last Week</div>
+          <Chart data={thisweekData} lastweek="false" />
+        </div>
       </div>
       <DiaryList diaryData={diaryData} />
     </div>
