@@ -1,39 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "react-google-login";
+import axios from "axios";
 import "./auth.css";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    navigate("/main");
+  useEffect(() => {
+    console.log("Client ID:", process.env.REACT_APP_GOOGLE_CLIENT_ID);
+  }, []);
+
+  const handleLoginSuccess = async (googleData) => {
+    try {
+      const res = await axios.post("http://localhost:8080/api/google-login", {
+        token: googleData.tokenId,
+      });
+
+      if (res.status === 200) {
+        const { accessToken, refreshToken } = res.data;
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        navigate("/");
+      } else {
+        console.error("Login failed");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
+  const handleLoginFailure = (error) => {
+    console.error("Google login failed:", error);
   };
 
   return (
-    <div className="login-page">
-      <h2 className="page-title">로그인</h2>
-      <div className="login-container">
-        <form className="login-form">
-          <label htmlFor="username">아이디</label>
-          <input type="text" id="username" placeholder="아이디를 입력하세요." />
-          <label htmlFor="password">비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="비밀번호를 입력하세요."
-          />
-          <button type="button" className="login-button" onClick={handleLogin}>
-            로그인
-          </button>
-          <button
-            type="button"
-            className="register-button"
-            onClick={() => navigate("/signup")}
-          >
-            회원가입
-          </button>
-        </form>
-      </div>
+    <div className="login-container">
+      <GoogleLogin
+        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+        buttonText="구글로 로그인"
+        onSuccess={handleLoginSuccess}
+        onFailure={handleLoginFailure}
+        cookiePolicy={"single_host_origin"}
+      />
     </div>
   );
 };
