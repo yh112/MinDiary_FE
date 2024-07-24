@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Chart from "../components/Chart";
 import Emotion from "../components/Emotion";
-
+import HappyImage from "../images/Happy.png";
+import AngryImage from "../images/Angry.png";
+import SadImage from "../images/Sad.png";
+import SurprisedImage from "../images/Surprised.png";
+import BoringImage from "../images/Boring.png";
 
 const AnalyzeView = () => {
   // 지난 주 감정 데이터(더미)
@@ -62,13 +66,31 @@ const AnalyzeView = () => {
           </div>
         </div>
         <div className="calendar-container">
-          <div className="calendar-title">주간 감정 피드백</div>
           <div className="feedback-content">
-            <Emotion emotionName="행복" emotionSrc="../images/Happy.png" percent="47%" />
-            <Emotion emotionName="분노" emotionSrc="../images/Angry.png" percent="3%" />
-            <Emotion emotionName="슬픔" emotionSrc="../images/Sad.png" percent="20%" />
-            <Emotion emotionName="놀람" emotionSrc="../images/Surprised.png" percent="0%" />
-            <Emotion emotionName="중립" emotionSrc="../images/Boring.png" percent="30%" />
+            <div className="calendar-title">주간 감정 피드백</div>
+            <div className="emotion-container">
+              <Emotion
+                emotionName="행복"
+                emotionSrc={HappyImage}
+                percent="47%"
+              />
+              <Emotion
+                emotionName="분노"
+                emotionSrc={AngryImage}
+                percent="3%"
+              />
+              <Emotion emotionName="슬픔" emotionSrc={SadImage} percent="20%" />
+              <Emotion
+                emotionName="놀람"
+                emotionSrc={SurprisedImage}
+                percent="0%"
+              />
+              <Emotion
+                emotionName="중립"
+                emotionSrc={BoringImage}
+                percent="30%"
+              />
+            </div>
             <p>{feedbackData}</p>
           </div>
         </div>

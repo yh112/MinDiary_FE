@@ -68,6 +68,22 @@ $title-color: #2353B5;
   color: $title-color;
 }
 
+.emotion-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  color: #353535;
+}
+
+.emotion-content {
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
 .feedback-content {
   background: #E3EEFC;
   border-radius: 32px;
