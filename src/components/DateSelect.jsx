@@ -5,7 +5,7 @@ import { ko } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/DateSelect.scss";
 
-const DateSelect = ({ currentDate, setCurrentDate }) => {
+const DateSelect = ({ currentDate, setCurrentDate, includeDates }) => {
   const start = startOfWeek(new Date());
   const end = endOfWeek(new Date());
 
@@ -32,6 +32,7 @@ const DateSelect = ({ currentDate, setCurrentDate }) => {
         maxDate={end}
         dateFormat="yyyy년 MM월 dd일 eeee"
         locale={ko}
+        includeDates={includeDates}
       />
     </div>
   );

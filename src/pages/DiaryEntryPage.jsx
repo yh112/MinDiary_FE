@@ -18,8 +18,8 @@ import "../styles/DiaryEntryPage.scss";
 
 const DiaryEntryPage = () => {
   const { checkToken, config } = useTokenHandler();
-  const [currentDate, setCurrentDate] = useState(new Date());
-  // 감정 데이터(지우면 안됨)
+
+  //감정 이미지 경로
   const emotionImages = {
     행복: { normal: HappyImage, selected: SelectHappyImage },
     분노: { normal: AngryImage, selected: SelectAngryImage },
@@ -28,44 +28,46 @@ const DiaryEntryPage = () => {
     중립: { normal: BoringImage, selected: SelectBoringImage },
   };
 
+  // 일기 작성 가능한 날짜
   const [missingDays, setMissingDays] = useState([]);
 
+  // 선택한 날짜
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  // 감정 데이터(지우면 안됨)
   const [emotionData, setEmotionData] = useState([
     {
       id: "HAPPINESS",
       emotion: "행복",
-      percent: "47%",
-      src: HappyImage,
     },
     {
       id: "ANGER",
       emotion: "분노",
-      percent: "3%",
-      src: AngryImage,
     },
     {
       id: "SADNESS",
       emotion: "슬픔",
-      percent: "20%",
-      src: SadImage,
     },
     {
       id: "SURPRISE",
       emotion: "놀람",
-      percent: "0%",
-      src: SurprisedImage,
     },
     {
       id: "NEUTRAL",
       emotion: "중립",
-      percent: "30%",
-      src: BoringImage,
     },
   ]);
+
+  // 선택한 이미지
   const [selectEmotion, setSelectEmotion] = useState("");
+
+  // 제목
   const [title, setTitle] = useState("");
+
+  // 내용
   const [content, setContent] = useState("");
 
+  // 감정 이미지 경로 확인
   const checkEmotion = (emotion) => {
     return emotionImages[emotion]?.selected || "";
   };
@@ -89,11 +91,14 @@ const DiaryEntryPage = () => {
   }, [selectEmotion]);
 
   const postDiary = async () => {
-    if (!title || !content || !selectEmotion) {
-      alert("모든 항목을 입력해주세요.");
+    if (!selectEmotion) {
+      alert("감정을 선택해주세요.");
       return;
-    } else if (title.length < 30 || content.length < 30) {
-      alert("제목과 내용을 30자 이상 입력해주세요.");
+    } else if (title.length < 10) {
+      alert("제목을 10자 이상 입력해주세요.");
+      return;
+    } else if (content.length < 30) {
+      alert("내용을 30자 이상 입력해주세요.");
       return;
     }
     try {
@@ -108,8 +113,10 @@ const DiaryEntryPage = () => {
         },
         config
       );
-
-      console.log(res);
+      if(res.status === 201) {
+        alert("일기 작성이 완료되었습니다.");
+        window.location.reload();
+      }
     } catch (err) {
       console.log(err);
     }
@@ -121,14 +128,31 @@ const DiaryEntryPage = () => {
       console.log("findMissingDays");
       const res = await axios.get(`/api/v1/diary/missing-days`, config);
       console.log(res);
+      setMissingDays(res.data);
     } catch (err) {
       console.log(err);
     }
   };
 
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 +1, 두 자리 수로 만듦
+    const day = String(date.getDate()).padStart(2, "0"); // 두 자리 수로 만듦
+    return `${year}-${month}-${day}`;
+  };
+
   useEffect(() => {
     findMissingDays();
-  }, [currentDate]);
+  }, []);
+
+  useEffect(() => {
+    if (missingDays.length > 0) {
+      const todayFormatted = formatDate(new Date());
+      if (!missingDays.includes(todayFormatted)) {
+        setCurrentDate(new Date(missingDays[missingDays.length - 1]));
+      }
+    }
+  }, [missingDays]);
 
   return (
     <div className="main-container" style={{ width: "1063px" }}>
@@ -139,7 +163,7 @@ const DiaryEntryPage = () => {
         </button>
       </div>
       <div className="top-content">
-        <DateSelect currentDate={currentDate} setCurrentDate={setCurrentDate} />
+        <DateSelect currentDate={currentDate} setCurrentDate={setCurrentDate} includeDates={missingDays} />
         <div className="emotion">
           <label>오늘의 감정</label>
           <Emotion
@@ -157,7 +181,7 @@ const DiaryEntryPage = () => {
       />
       <InputForm
         label="내용"
-        placeholder="내용을 입력해주세요."
+        placeholder="내용을 입력해주세요. 일기 내용이 짧으면 감정 분석이 어려울 수 있어요!"
         value={content}
         setValue={setContent}
       />
