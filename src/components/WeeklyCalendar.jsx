@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import downImage from "../styles/calendar/down-btn.png";
 import Day from "./Day";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const WeeklyCalendar = ({
   dummy,
@@ -13,25 +13,17 @@ const WeeklyCalendar = ({
   setClickDay,
   clickDay,
 }) => {
-  const day = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const datePickerRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const handleImageClick = () => {
+    if (datePickerRef.current) {
+      datePickerRef.current.setOpen(true);
+    }
+  };
 
+  const day = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const weeks = ["첫째주", "둘째주", "셋째주", "넷째주", "다섯째주"];
 
-  // Function to determine the week of the month for a given date
   const getWeekOfMonth = (date) => {
     const startWeekDayIndex = new Date(
       date.getFullYear(),
@@ -50,38 +42,44 @@ const WeeklyCalendar = ({
     setSelectedWeek(weeks[getWeekOfMonth(currentDate)]);
   }, [currentDate]);
 
-  // Function to get the start date of the selected week
   const getStartDateOfSelectedWeek = (year, month, weekIndex) => {
     const firstDayOfMonth = new Date(year, month, 1);
     const startWeekDayIndex = firstDayOfMonth.getDay();
-    const startDate = new Date(
-      year,
-      month,
-      1 + weekIndex * 7 - startWeekDayIndex
-    );
+    let startDate = new Date(year, month, 1 + weekIndex * 7 - startWeekDayIndex);
+
+    // Ensure the start date is in the current month
+    if (startDate.getMonth() !== month) {
+      
+      startDate = new Date(year, month, startWeekDayIndex + 1 + weekIndex * 7 - startWeekDayIndex);
+    }
+    
     return startDate;
   };
 
-  const handleWeekChange = (e) => {
-    const selectedWeekIndex = weeks.indexOf(e.target.value);
+  const handleWeekChange = (week) => {
+    const selectedWeekIndex = weeks.indexOf(week);
     const newStartDate = getStartDateOfSelectedWeek(
       currentDate.getFullYear(),
       currentDate.getMonth(),
       selectedWeekIndex
     );
     setCurrentDate(newStartDate);
+    setIsOpen(false);
   };
 
-  const weekStart = new Date(currentDate);
-  weekStart.setDate(currentDate.getDate() - currentDate.getDay());
+  const getWeekStartDate = (date) => {
+    const dayOfWeek = date.getDay();
+    const startDate = new Date(date); 
+    startDate.setDate(date.getDate() - dayOfWeek);
+    return startDate;
+  };
 
-  const days = [];
+  const weekStart = getWeekStartDate(currentDate);
+  const weekDays = [];
   for (let i = 0; i < 7; i++) {
-    const date = new Date(weekStart);
-    date.setDate(weekStart.getDate() + i);
-    if (date.getMonth() === currentDate.getMonth()) {
-      days.push(date);
-    }
+    const day = new Date(weekStart);
+    day.setDate(weekStart.getDate() + i);
+    weekDays.push(day);
   }
 
   const findEvent = (date) => {
@@ -95,25 +93,40 @@ const WeeklyCalendar = ({
         <div className="picker-container">
           <DatePicker
             selected={currentDate}
+            shouldCloseOnSelect={true}
+            popperPlacement="bottom"
             onChange={(date) => setCurrentDate(date)}
             dateFormat="MMMM, yyyy"
             showMonthYearPicker
+            showPopperArrow={false}
             className="date-picker"
+            ref={datePickerRef}
           />
-          <img src={downImage} alt="down" className="down-image" />
+          <img
+            src={downImage}
+            alt="down"
+            className="down-image"
+            onClick={handleImageClick}
+          />
         </div>
-
-        <select
-          className="week-selector"
-          value={selectedWeek}
-          onChange={handleWeekChange}
-        >
-          {weeks.map((week) => (
-            <option key={week} value={week}>
-              {week}
-            </option>
-          ))}
-        </select>
+        <div className="week-selector">
+          <button className="week-selector-button" onClick={() => setIsOpen(!isOpen)}>
+            {selectedWeek}
+          </button>
+          {isOpen && (
+            <ul className="option-list">
+              {weeks.map((week) => (
+                <li
+                  className="option"
+                  key={week}
+                  onClick={() => handleWeekChange(week)}
+                >
+                  {week}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
 
       <div className="calendar-weeks">
@@ -123,19 +136,20 @@ const WeeklyCalendar = ({
       </div>
 
       <div className="calendar-days">
-        {days.map((day) => (
-          <Day
-            id={getYearMonthDay(day)}
-            key={getYearMonthDay(day)}
-            type="weekly"
-            day={day}
-            event={findEvent(day)}
-            setCurrentDate={setCurrentDate}
-            currentDate={currentDate}
-            getYearMonthDay={getYearMonthDay}
-            setClickDay={setClickDay}
-            clickDay={clickDay}
-          />
+        {weekDays.map((day, index) => (
+          <div key={index} className="calendar-day">
+            <Day
+              id={getYearMonthDay(day)}
+              type="weekly"
+              day={day}
+              event={findEvent(day)}
+              setCurrentDate={setCurrentDate}
+              currentDate={currentDate}
+              getYearMonthDay={getYearMonthDay}
+              setClickDay={setClickDay}
+              clickDay={clickDay}
+            />
+          </div>
         ))}
       </div>
     </div>

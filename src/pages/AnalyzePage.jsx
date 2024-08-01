@@ -14,52 +14,28 @@ const AnalyzePage = () => {
   const { checkToken, config } = useTokenHandler();
   // 받아올 일기 정보들
   const [diaryDatas, setDiaryDatas] = useState([]);
-  const [thisweekData, setThisweekData] = useState([
-    { id: "Happy", label: "기쁨", value: 50, color: "#FFE75C" },
-    { id: "Sad", label: "슬픔", value: 20, color: "#3293D7" },
-    { id: "Angry", label: "분노", value: 5, color: "#FF6262" },
-    { id: "Surprised", label: "놀람", value: 15, color: "#FEBB00" },
-    { id: "Boring", label: "중립", value: 10, color: "#C6C6C6" },
-  ]);
+  const [thisweekData, setThisweekData] = useState(
+    [
+    // { id: "Happy", label: "기쁨", value: 0, color: "#FFE75C" },
+    // { id: "Sad", label: "슬픔", value: 0, color: "#3293D7" },
+    // { id: "Angry", label: "분노", value: 0, color: "#FF6262" },
+    // { id: "Surprised", label: "놀람", value: 0, color: "#FEBB00" },
+    // { id: "Boring", label: "중립", value: 0, color: "#C6C6C6" },
+  ]
+);
 
   // 지난 주 감정 데이터(더미)
-  const [lastweekData, setLastweekData] = useState([
-    { id: "Happy", label: "기쁨", value: 30, color: "#FFE75C" },
-    { id: "Sad", label: "슬픔", value: 2, color: "#3293D7" },
-    { id: "Angry", label: "분노", value: 15, color: "#FF6262" },
-    { id: "Surprised", label: "놀람", value: 5, color: "#FEBB00" },
-    { id: "Boring", label: "중립", value: 20, color: "#C6C6C6" },
-  ]);
+  const [lastweekData, setLastweekData] = useState(
+    [
+    // { id: "Happy", label: "기쁨", value: 30, color: "#FFE75C" },
+    // { id: "Sad", label: "슬픔", value: 2, color: "#3293D7" },
+    // { id: "Angry", label: "분노", value: 15, color: "#FF6262" },
+    // { id: "Surprised", label: "놀람", value: 5, color: "#FEBB00" },
+    // { id: "Boring", label: "중립", value: 20, color: "#C6C6C6" },
+  ]
+);
 
-  // 감정 데이터
-  const [emotionData, setEmotionData] = useState([
-    {
-      emotion: "행복",
-      percent: "47%",
-      src: HappyImage,
-    },
-    {
-      emotion: "분노",
-      percent: "3%",
-      src: AngryImage,
-    },
-    {
-      emotion: "슬픔",
-      percent: "20%",
-      src: SadImage,
-    },
-    {
-      emotion: "놀람",
-      percent: "0%",
-      src: SurprisedImage,
-    },
-    {
-      emotion: "중립",
-      percent: "30%",
-      src: BoringImage,
-    },
-  ]);
-  // 감정 피드백 데이터(더미)
+  // 감정 피드백 데이터
   const [feedbackData, setFeedbackData] = useState("");
   const [currentDate, setCurrentDate] = useState(new Date());
   const [clickDay, setClickDay] = useState(false);
@@ -86,7 +62,22 @@ const AnalyzePage = () => {
         },
       });
       console.log(res);
-      // setFeedbackData(res.data);
+      setThisweekData([
+        { id: "Happy", label: "기쁨", value: res.data.currentAvgHappiness, color: "#FFE75C" },
+        { id: "Sad", label: "슬픔", value: res.data.currentAvgHappiness, color: "#3293D7" },
+        { id: "Angry", label: "분노", value: res.data.currentAvgHappiness, color: "#FF6262" },
+        { id: "Surprised", label: "놀람", value: res.data.currentAvgHappiness, color: "#FEBB00" },
+        { id: "Boring", label: "중립", value: res.data.currentAvgHappiness, color: "#C6C6C6" },
+      ])
+
+      setLastweekData([
+        { id: "Happy", label: "기쁨", value: res.data.prevAvgHappiness, color: "#FFE75C" },
+        { id: "Sad", label: "슬픔", value: res.data.prevAvgHappiness, color: "#3293D7" },
+        { id: "Angry", label: "분노", value: res.data.prevAvgHappiness, color: "#FF6262" },
+        { id: "Surprised", label: "놀람", value: res.data.prevAvgHappiness, color: "#FEBB00" },
+        { id: "Boring", label: "중립", value: res.data.prevAvgHappiness, color: "#C6C6C6" },
+      ])
+      setFeedbackData(res.data.currentWeeklyDetailedFeedback); //주간 피드백
     } catch (err) {
       console.log(err);
     }
@@ -146,7 +137,7 @@ const AnalyzePage = () => {
           </div>
           <div className="feedback-content">
             <div className="feedback-title">주간 감정 피드백</div>
-            <Emotion emotionData={emotionData} type="weekly" />
+            <Emotion emotionData={thisweekData} type="weekly" />
             <p>{feedbackData}</p>
           </div>
         </div>
