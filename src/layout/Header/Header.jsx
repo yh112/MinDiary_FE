@@ -47,7 +47,7 @@ const Header = () => {
   const handlelogin_tk2 = async () => {
     console.log("TLqkf");
     const res = await axios
-      .get("/api/v1/test", config2)
+      .get("/api/v1/checkToken", config2)
       .then((res) => {
         console.log(res);
       })
@@ -66,10 +66,10 @@ const Header = () => {
         }
       });
   };
-  const handlelogin_tk = async () => {
+  const checkToken = async () => {
     try {
       console.log(localStorage.getItem("accessToken"));
-      const res = await axios.get("/api/v1/test", config);
+      const res = await axios.get("/api/v1/checkToken", config);
       console.log(res);
     } catch (err) {
       if (err.response?.data === "만료된 토큰") {
@@ -94,7 +94,7 @@ const Header = () => {
               to="/diary"
               className="nav-link"
               activeClassName="active"
-              onClick={handlelogin_tk}
+              onClick={checkToken}
             >
               DIARY
             </NavLink>

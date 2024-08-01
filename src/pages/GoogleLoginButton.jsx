@@ -15,6 +15,7 @@ const GoogleLoginButton = () => {
         loginId: user_info.jti,
         name: user_info.name,
       });
+      // http://15.165.116.155:8080/api/v1/account/login
       console.log("response", response);
       const accessToken = response.headers.authorization;
       const refreshToken = response.headers.refreshtoken;
