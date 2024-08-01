@@ -12,7 +12,7 @@ const GoogleLoginButton = () => {
   const handle_user_authentication = async (user_info) => {
     try {
       const response = await axios.post("/api/v1/account/login", {
-        loginId: user_info.jti,
+        loginId: user_info.sub,
         name: user_info.name,
       });
       // http://15.165.116.155:8080/api/v1/account/login
