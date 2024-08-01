@@ -19,7 +19,7 @@ import "../styles/DiaryEntryPage.scss";
 const DiaryEntryPage = () => {
   const { checkToken, config } = useTokenHandler();
   const [currentDate, setCurrentDate] = useState(new Date());
-  // 감정 데이터
+  // 감정 데이터(지우면 안됨)
   const emotionImages = {
     행복: { normal: HappyImage, selected: SelectHappyImage },
     분노: { normal: AngryImage, selected: SelectAngryImage },
@@ -92,6 +92,9 @@ const DiaryEntryPage = () => {
     if (!title || !content || !selectEmotion) {
       alert("모든 항목을 입력해주세요.");
       return;
+    } else if (title.length < 30 || content.length < 30) {
+      alert("제목과 내용을 30자 이상 입력해주세요.");
+      return;
     }
     try {
       checkToken();
@@ -118,7 +121,6 @@ const DiaryEntryPage = () => {
       console.log("findMissingDays");
       const res = await axios.get(`/api/v1/diary/missing-days`, config);
       console.log(res);
-      
     } catch (err) {
       console.log(err);
     }

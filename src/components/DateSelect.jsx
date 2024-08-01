@@ -22,11 +22,6 @@ const DateSelect = ({ currentDate, setCurrentDate }) => {
     setCurrentDate(formattedDate);
   };
 
-  useEffect(() => {
-    const today = new Date();
-    setCurrentDate(formatDate(today));
-  }, [currentDate]);
-
   return (
     <div className="select-content">
       <label>날짜</label>
