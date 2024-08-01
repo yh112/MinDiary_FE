@@ -13,7 +13,7 @@ html {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(to bottom, #2353b5 50%, #ffffff 50%);
+  /* background: linear-gradient(to bottom, #2353b5 50%, #ffffff 50%); */
 }
 
 .page-title {

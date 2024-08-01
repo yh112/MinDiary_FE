@@ -5,13 +5,14 @@ import calendarImage from "../images/DiaryViewImage/Calendar.png";
 import DiaryImage from "../images/DiaryViewImage/Diary.png";
 import AnalyzeImage from "../images/DiaryViewImage/Analyze.png";
 
-
 import CalendarPage from "../pages/CalendarPage";
 import DiaryPage from "./DiaryPage";
 import AnalyzePage from "./AnalyzePage";
 import DiaryEntryPage from "./DiaryEntryPage";
+import useTokenHandler from "../layout/Header/useTokenHandler";
 
 const CalendarView = () => {
+  const { checkToken } = useTokenHandler();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [activeComponent, setActiveComponent] = useState("calendar");
   const [clickDay, setClickDay] = useState(false);
@@ -83,13 +84,9 @@ const CalendarView = () => {
         />
       )}
 
-      {activeComponent === "analyzeView" && (
-        <AnalyzePage />
-      )}
+      {activeComponent === "analyzeView" && <AnalyzePage />}
 
-      {activeComponent === "diaryInput" && (
-        <DiaryEntryPage />
-      )}
+      {activeComponent === "diaryInput" && <DiaryEntryPage />}
     </div>
   );
 };
