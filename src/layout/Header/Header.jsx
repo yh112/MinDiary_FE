@@ -5,6 +5,7 @@ import "./header.css";
 import logoImage from "./logo.png";
 import GoogleLoginButton from "../../pages/GoogleLoginButton";
 import useTokenHandler from "./useTokenHandler";
+import axios from "axios";
 
 Modal.setAppElement("#root");
 
@@ -21,14 +22,25 @@ const Header = () => {
     setModalIsOpen(false);
   };
 
-  const handleLogin = (state) => {
-    setIsLoggedIn(state);
+  const handleLogin = () => {
+    setIsLoggedIn(true);
     closeModal();
+  };
+  const handlelogout = async () => {
+    const response = await axios.get("/api/v1/account/logout", {
+      headers: {
+        Authorization: `${localStorage.getItem("accessToken")}`,
+      },
+    });
   };
 
   const logout = () => {
-    setIsLoggedIn(false); // 로그인 상태를 false로 변경합니다.
-    // axios.get("/api/v1/account/logout")
+    handlelogout();
+    console.log("Logout function called");
+    setIsLoggedIn(false);
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    console.log("isLoggedIn state:", isLoggedIn);
   };
 
   return (
@@ -77,7 +89,7 @@ const Header = () => {
         <button onClick={closeModal} className="close-modal-btn">
           Close
         </button>
-        <GoogleLoginButton onLoginSuccess={() => handleLogin(true)} />
+        <GoogleLoginButton onLoginSuccess={handleLogin} />
       </Modal>
     </header>
   );

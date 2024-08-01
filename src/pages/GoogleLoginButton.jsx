@@ -4,7 +4,7 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
-const GoogleLoginButton = () => {
+const GoogleLoginButton = ({ onLoginSuccess }) => {
   const navigate = useNavigate();
   const clientId = process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID;
   console.log(clientId);
@@ -23,11 +23,13 @@ const GoogleLoginButton = () => {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
 
+      onLoginSuccess(); // Call the callback function on successful login
       navigate("/");
     } catch (error) {
       console.error("Error during authentication:", error);
     }
   };
+
   return (
     <>
       <GoogleOAuthProvider clientId={clientId}>
