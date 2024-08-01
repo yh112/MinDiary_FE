@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "../styles/DiaryView.scss";
 import calendarImage from "../images/DiaryViewImage/Calendar.png";
@@ -10,7 +10,7 @@ import DiaryPage from "./DiaryPage";
 import AnalyzePage from "./AnalyzePage";
 import DiaryEntryPage from "./DiaryEntryPage";
 import useTokenHandler from "../layout/Header/useTokenHandler";
-
+import axios from "axios";
 const CalendarView = () => {
   const { checkToken } = useTokenHandler();
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -22,6 +22,34 @@ const CalendarView = () => {
     setActiveComponent(component);
     setClickDay(false);
   };
+  useEffect(() => {
+    console.log("useEffect");
+
+    const check_diary_month = async () => {
+      const accessToken = localStorage.getItem("accessToken");
+      const year = 2024;
+      const month = 8;
+      console.log("자료형", typeof year);
+      checkToken();
+      const config = {};
+
+      try {
+        const response = await axios.get("/api/v1/diary/month", {
+          headers: {
+            Authorization: `${accessToken}`,
+          },
+          params: {
+            year: year,
+            month: month,
+          },
+        });
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching diary data:", error);
+      }
+    };
+    check_diary_month();
+  }, []);
 
   return (
     <div className="diary-page">
