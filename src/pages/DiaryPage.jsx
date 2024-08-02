@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DiaryList from "../components/DiaryList";
 import useTokenHandler from '../layout/Header/useTokenHandler';
 import API from "../BaseUrl";
+import axios from "axios";
 
 const DiaryPage = ({ setActiveComponent, setClickDay, setCurrentDate }) => {
   const { checkToken } = useTokenHandler();
@@ -49,7 +50,7 @@ const DiaryPage = ({ setActiveComponent, setClickDay, setCurrentDate }) => {
     const getAllDiaryDatas = async () => {
       try {
         checkToken();
-        const res = await API.get('/api/v1/diary/all',
+        const res = await axios.get('/api/v1/diary/all',
           {
             headers: {
               Authorization: `${localStorage.getItem("accessToken")}`,

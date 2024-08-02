@@ -11,6 +11,7 @@ import AnalyzePage from "./AnalyzePage";
 import DiaryEntryPage from "./DiaryEntryPage";
 import useTokenHandler from "../layout/Header/useTokenHandler";
 import API from "../BaseUrl";
+import axios from "axios";
 const CalendarView = () => {
   const { checkToken } = useTokenHandler();
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -34,7 +35,7 @@ const CalendarView = () => {
       const config = {};
 
       try {
-        const response = await API.get("/api/v1/diary/month", {
+        const response = await axios.get("/api/v1/diary/month", {
           headers: {
             Authorization: `${accessToken}`,
           },

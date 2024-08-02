@@ -7,6 +7,7 @@ import SurprisedImage from "../images/Surprised.png";
 import BoringImage from "../images/Boring.png";
 import useTokenHandler from "../layout/Header/useTokenHandler";
 import API from "../BaseUrl";
+import axios from "axios";
 
 const emotionTypes = {
   "HAPPINESS": HappyImage,
@@ -49,7 +50,7 @@ function DiarySummaryList({ diaryData, setDummy, currentDate, setCurrentDate, se
     );
     try {
       checkToken();
-      const res = await API.delete(`/api/v1/diary/${id}`, {
+      const res = await axios.delete(`/api/v1/diary/${id}`, {
         headers: {
           Authorization: `${localStorage.getItem("accessToken")}`,
         },

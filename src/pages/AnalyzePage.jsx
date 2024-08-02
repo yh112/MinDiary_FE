@@ -11,6 +11,7 @@ import useTokenHandler from "../layout/Header/useTokenHandler";
 import "../styles/AnalyzePage.scss";
 import API from "../BaseUrl";
 import { sr } from "date-fns/locale";
+import axios from "axios";
 
 const AnalyzePage = () => {
   const { checkToken, config } = useTokenHandler();
@@ -39,7 +40,7 @@ const AnalyzePage = () => {
     try {
       const date = getYearMonthDay(currentDate);
       // console.log(date);
-      const res = await API.get(`/api/v1/weekly-emotion`, {
+      const res = await axios.get(`/api/v1/weekly-emotion`, {
         headers: {
           Authorization: `${accessToken}`,
         },
@@ -132,7 +133,7 @@ const AnalyzePage = () => {
   const getDiaryDatas = async () => {
     try {
       checkToken();
-      const res = await API.get(`/api/v1/diary/month`, {
+      const res = await axios.get(`/api/v1/diary/month`, {
         params: {
           year: currentDate.getFullYear(),
           month: currentDate.getMonth() + 1,

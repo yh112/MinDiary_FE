@@ -4,6 +4,7 @@ import DiaryInfo from "../components/DiaryInfo";
 import DiarySummaryList from "../components/DiarySummaryList";
 import useTokenHandler from "../layout/Header/useTokenHandler";
 import API from "../BaseUrl";
+import axios from "axios";
 
 const CalendarPage = ({ currentDate, setEventBool, setCurrentDate, setClickDay, clickDay, eventBool }) => {
   const { checkToken } = useTokenHandler();
@@ -46,7 +47,7 @@ const CalendarPage = ({ currentDate, setEventBool, setCurrentDate, setClickDay, 
     const getDiaryDatas = async () => {
       try {
         checkToken();
-        const res = await API.get(`/api/v1/diary/month`,
+        const res = await axios.get(`/api/v1/diary/month`,
           {
             params: {
               year: currentDate.getFullYear(),

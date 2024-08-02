@@ -15,6 +15,7 @@ import InputForm from "../components/InputForm";
 import useTokenHandler from "../layout/Header/useTokenHandler";
 import "../styles/DiaryEntryPage.scss";
 import API from "../BaseUrl";
+import axios from "axios";
 
 const DiaryEntryPage = () => {
   const { checkToken, config } = useTokenHandler();
@@ -103,7 +104,7 @@ const DiaryEntryPage = () => {
     }
     try {
       checkToken();
-      const res = await API.post(
+      const res = await axios.post(
         `/api/v1/diary`,
         {
           diaryAt: currentDate,
@@ -126,7 +127,7 @@ const DiaryEntryPage = () => {
     try {
       checkToken();
       // console.log("findMissingDays");
-      const res = await API.get(`/api/v1/diary/missing-days`, config);
+      const res = await axios.get(`/api/v1/diary/missing-days`, config);
       // console.log(res);
       setMissingDays(res.data);
     } catch (err) {
