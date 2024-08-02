@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import downImage from "../styles/calendar/down-btn.png";
 import Day from "./Day";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 const WeeklyCalendar = ({
   dummy,
@@ -45,14 +45,20 @@ const WeeklyCalendar = ({
   const getStartDateOfSelectedWeek = (year, month, weekIndex) => {
     const firstDayOfMonth = new Date(year, month, 1);
     const startWeekDayIndex = firstDayOfMonth.getDay();
-    let startDate = new Date(year, month, 1 + weekIndex * 7 - startWeekDayIndex);
+    let startDate = new Date(
+      year,
+      month,
+      1 + weekIndex * 7 - startWeekDayIndex
+    );
 
-    // Ensure the start date is in the current month
     if (startDate.getMonth() !== month) {
-      
-      startDate = new Date(year, month, startWeekDayIndex + 1 + weekIndex * 7 - startWeekDayIndex);
+      startDate = new Date(
+        year,
+        month,
+        startWeekDayIndex + 1 + weekIndex * 7 - startWeekDayIndex
+      );
     }
-    
+
     return startDate;
   };
 
@@ -69,7 +75,7 @@ const WeeklyCalendar = ({
 
   const getWeekStartDate = (date) => {
     const dayOfWeek = date.getDay();
-    const startDate = new Date(date); 
+    const startDate = new Date(date);
     startDate.setDate(date.getDate() - dayOfWeek);
     return startDate;
   };
@@ -83,8 +89,10 @@ const WeeklyCalendar = ({
   }
 
   const findEvent = (date) => {
-    const event = dummy.find((event) => event.date === getYearMonthDay(date));
-    return event ? event.content : null;
+    const event = dummy.find(
+      (event) => event.diaryAt === getYearMonthDay(date)
+    );
+    return event ? event : null;
   };
 
   return (
@@ -110,7 +118,10 @@ const WeeklyCalendar = ({
           />
         </div>
         <div className="week-selector">
-          <button className="week-selector-button" onClick={() => setIsOpen(!isOpen)}>
+          <button
+            className="week-selector-button"
+            onClick={() => setIsOpen(!isOpen)}
+          >
             {selectedWeek}
           </button>
           {isOpen && (

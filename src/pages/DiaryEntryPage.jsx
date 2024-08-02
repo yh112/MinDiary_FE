@@ -12,9 +12,9 @@ import SelectSadImage from "../images/Select_Sad.png";
 import SelectSurprisedImage from "../images/Select_Surprised.png";
 import SelectBoringImage from "../images/Select_Boring.png";
 import InputForm from "../components/InputForm";
-import axios from "axios";
 import useTokenHandler from "../layout/Header/useTokenHandler";
 import "../styles/DiaryEntryPage.scss";
+import API from "../BaseUrl";
 
 const DiaryEntryPage = () => {
   const { checkToken, config } = useTokenHandler();
@@ -103,7 +103,7 @@ const DiaryEntryPage = () => {
     }
     try {
       checkToken();
-      const res = await axios.post(
+      const res = await API.post(
         `/api/v1/diary`,
         {
           diaryAt: currentDate,
@@ -126,7 +126,7 @@ const DiaryEntryPage = () => {
     try {
       checkToken();
       console.log("findMissingDays");
-      const res = await axios.get(`/api/v1/diary/missing-days`, config);
+      const res = await API.get(`/api/v1/diary/missing-days`, config);
       console.log(res);
       setMissingDays(res.data);
     } catch (err) {

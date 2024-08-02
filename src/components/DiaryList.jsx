@@ -7,8 +7,8 @@ import AngryImage from "../images/Angry.png";
 import SadImage from "../images/Sad.png";
 import SurprisedImage from "../images/Surprised.png";
 import BoringImage from "../images/Boring.png";
-import axios from 'axios';
 import useTokenHandler from '../layout/Header/useTokenHandler';
+import API from '../BaseUrl';
 
 const emotionTypes = {
     "HAPPINESS": HappyImage,
@@ -65,7 +65,7 @@ const DiaryList = ({ diaryData, setDummy, setCurrentDate, setClickDay, setActive
 
         try {
             checkToken();
-            const res = await axios.delete(`/api/v1/diary/${id}`, {
+            const res = await API.delete(`/api/v1/diary/${id}`, {
                 headers: {
                     Authorization: `${localStorage.getItem("accessToken")}`,
                 },
@@ -90,7 +90,7 @@ const DiaryList = ({ diaryData, setDummy, setCurrentDate, setClickDay, setActive
 
         try {
             checkToken();
-            const res = await axios.post(`/api/v1/diary/deleteSelectedDiarys`,
+            const res = await API.post(`/api/v1/diary/deleteSelectedDiarys`,
                 deleteDiaryRequests, {
                 headers: {
                     Authorization: `${localStorage.getItem("accessToken")}`,

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../BaseUrl";
 const useTokenHandler = () => {
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const useTokenHandler = () => {
 
   const handlelogin_tk2 = async () => {
     try {
-      const res = await axios.get("/api/v1/checkToken", config2);
+      const res = await API.get("/api/v1/checkToken", config2);
       console.log(res);
     } catch (err) {
       console.log(err);
@@ -36,7 +36,7 @@ const useTokenHandler = () => {
   const checkToken = async () => {
     try {
       console.log(localStorage.getItem("accessToken"));
-      const res = await axios.get("/api/v1/checkToken", config);
+      const res = await API.get("/api/v1/checkToken", config);
       console.log(res);
     } catch (err) {
       if (err.response?.data === "만료된 토큰") {

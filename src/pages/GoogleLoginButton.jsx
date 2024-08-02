@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import axios from "axios";
+import API from "../BaseUrl";
 
 const GoogleLoginButton = ({ onLoginSuccess }) => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const GoogleLoginButton = ({ onLoginSuccess }) => {
 
   const handle_user_authentication = async (user_info) => {
     try {
-      const response = await axios.post("/api/v1/account/login", {
+      const response = await API.post("/api/v1/account/login", {
         loginId: user_info.sub,
         name: user_info.name,
       });

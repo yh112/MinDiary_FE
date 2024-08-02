@@ -2,8 +2,8 @@ import React, { useState, useCallback, useEffect } from "react";
 import Calendar from "../components/Calendar";
 import DiaryInfo from "../components/DiaryInfo";
 import DiarySummaryList from "../components/DiarySummaryList";
-import axios from 'axios';
 import useTokenHandler from "../layout/Header/useTokenHandler";
+import API from "../BaseUrl";
 
 const CalendarPage = ({ currentDate, setEventBool, setCurrentDate, setClickDay, clickDay, eventBool }) => {
   const { checkToken } = useTokenHandler();
@@ -46,7 +46,7 @@ const CalendarPage = ({ currentDate, setEventBool, setCurrentDate, setClickDay, 
     const getDiaryDatas = async () => {
       try {
         checkToken();
-        const res = await axios.get(`/api/v1/diary/month`,
+        const res = await API.get(`/api/v1/diary/month`,
           {
             params: {
               year: currentDate.getFullYear(),

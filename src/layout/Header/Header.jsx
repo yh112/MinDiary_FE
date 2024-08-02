@@ -5,7 +5,7 @@ import "./header.css";
 import logoImage from "./logo.png";
 import GoogleLoginButton from "../../pages/GoogleLoginButton";
 import useTokenHandler from "./useTokenHandler";
-import axios from "axios";
+import API from "../../BaseUrl";
 
 Modal.setAppElement("#root");
 
@@ -39,7 +39,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("/api/v1/account/logout", {
+      await API.get("/api/v1/account/logout", {
         headers: {
           Authorization: `${localStorage.getItem("accessToken")}`,
         },
