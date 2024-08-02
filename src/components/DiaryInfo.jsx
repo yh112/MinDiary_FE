@@ -49,7 +49,7 @@ const DiaryInfo = ({ id, diaryId, setDummy, diaryData, setClickDay }) => {
                 },
             });
             alert("일기가 삭제되었습니다.");
-            console.log(res.data);
+            // console.log(res.data);
         } catch (err) {
             console.log(err);
         }
@@ -68,7 +68,7 @@ const DiaryInfo = ({ id, diaryId, setDummy, diaryData, setClickDay }) => {
                         },
                     }
                 );
-                console.log(res.data);
+                // console.log(res.data);
                 setDiaryInfo(res.data);
             } catch (err) {
                 console.log(err);

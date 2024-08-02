@@ -54,7 +54,7 @@ function DiarySummaryList({ diaryData, setDummy, currentDate, setCurrentDate, se
           Authorization: `${localStorage.getItem("accessToken")}`,
         },
       });
-      console.log(res.data);
+      // console.log(res.data);
       alert("일기가 삭제되었습니다.");
     } catch (err) {
       console.log(err);

@@ -73,7 +73,7 @@ const DiaryEntryPage = () => {
   };
 
   useEffect(() => {
-    console.log(selectEmotion);
+    // console.log(selectEmotion);
     setEmotionData(
       emotionData.map((data) => {
         if (data.id === selectEmotion) {
@@ -125,9 +125,9 @@ const DiaryEntryPage = () => {
   const findMissingDays = async () => {
     try {
       checkToken();
-      console.log("findMissingDays");
+      // console.log("findMissingDays");
       const res = await API.get(`/api/v1/diary/missing-days`, config);
-      console.log(res);
+      // console.log(res);
       setMissingDays(res.data);
     } catch (err) {
       console.log(err);
@@ -155,7 +155,7 @@ const DiaryEntryPage = () => {
   }, [missingDays]);
 
   return (
-    <div className="main-container" style={{ width: "1063px" }}>
+    <div className="main-container" style={{ width: "1063px"}}>
       <div className="title">
         <h1>WRITE AN EMOTIONAL DIARY</h1>
         <button className="submit-button" onClick={() => postDiary()}>

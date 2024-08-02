@@ -18,7 +18,6 @@ const DateSelect = ({ currentDate, setCurrentDate, includeDates }) => {
 
   const handleChange = (date) => {
     const formattedDate = formatDate(date);
-    console.log(formattedDate);
     setCurrentDate(formattedDate);
   };
 

@@ -1,8 +1,8 @@
 import React from "react";
 
-const InputForm = ({label, placeholder, value, setValue}) => {
+const InputForm = ({ label, placeholder, value, setValue }) => {
   return (
-    <div className="form-group">
+    <div className={`form-group ${label === "내용" ? "content" : ""}`}>
       <label>{label}</label>
       <textarea
         type="text"

@@ -70,7 +70,7 @@ const DiaryList = ({ diaryData, setDummy, setCurrentDate, setClickDay, setActive
                     Authorization: `${localStorage.getItem("accessToken")}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             alert("일기가 삭제되었습니다.");
         } catch (err) {
             console.log(err);
@@ -86,7 +86,7 @@ const DiaryList = ({ diaryData, setDummy, setCurrentDate, setClickDay, setActive
             return diary ? { diaryId: diary.diaryId } : null;
         });
         if (deleteDiaryRequests.length === 0) return;
-        console.log(deleteDiaryRequests)
+        // console.log(deleteDiaryRequests)
 
         try {
             checkToken();
@@ -97,7 +97,7 @@ const DiaryList = ({ diaryData, setDummy, setCurrentDate, setClickDay, setActive
                     "Content-Type": 'application/json'
                 }
             });
-            console.log(res.data);
+            // console.log(res.data);
             alert("일기가 삭제되었습니다.");
         } catch (err) {
             console.log(err);

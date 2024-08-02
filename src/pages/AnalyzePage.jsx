@@ -10,6 +10,7 @@ import BoringImage from "../images/Boring.png";
 import useTokenHandler from "../layout/Header/useTokenHandler";
 import "../styles/AnalyzePage.scss";
 import API from "../BaseUrl";
+import { sr } from "date-fns/locale";
 
 const AnalyzePage = () => {
   const { checkToken, config } = useTokenHandler();
@@ -37,7 +38,7 @@ const AnalyzePage = () => {
     checkToken();
     try {
       const date = getYearMonthDay(currentDate);
-      console.log(date);
+      // console.log(date);
       const res = await API.get(`/api/v1/weekly-emotion`, {
         headers: {
           Authorization: `${accessToken}`,
@@ -46,35 +47,40 @@ const AnalyzePage = () => {
           endDate: new Date("2024-08-03"),
         },
       });
-      console.log(res);
+      // console.log(res);
       setThisweekData([
         {
           id: "Happy",
           label: "기쁨",
+          src: HappyImage,
           value: res.data.currentAvgHappiness,
           color: "#FFE75C",
         },
         {
           id: "Sad",
           label: "슬픔",
+          src: SadImage,
           value: res.data.currentAvgSadness,
           color: "#3293D7",
         },
         {
           id: "Angry",
           label: "분노",
+          src: AngryImage,
           value: res.data.currentAvgAnger,
           color: "#FF6262",
         },
         {
           id: "Surprised",
           label: "놀람",
+          src: SurprisedImage,
           value: res.data.currentAvgSurprise,
           color: "#FEBB00",
         },
         {
           id: "Boring",
           label: "중립",
+          src: BoringImage,
           value: res.data.currentAvgNeutral,
           color: "#C6C6C6",
         },
@@ -84,30 +90,35 @@ const AnalyzePage = () => {
         {
           id: "Happy",
           label: "기쁨",
+          src: HappyImage,
           value: res.data.prevAvgHappiness,
           color: "#FFE75C",
         },
         {
           id: "Sad",
           label: "슬픔",
+          src: SadImage,
           value: res.data.prevAvgSadness,
           color: "#3293D7",
         },
         {
           id: "Angry",
           label: "분노",
+          src: AngryImage,
           value: res.data.prevAvgAnger,
           color: "#FF6262",
         },
         {
           id: "Surprised",
           label: "놀람",
+          src: SurprisedImage,
           value: res.data.prevAvgSurprise,
           color: "#FEBB00",
         },
         {
           id: "Boring",
           label: "중립",
+          src: BoringImage,
           value: res.data.prevAvgNeutral,
           color: "#C6C6C6",
         },
@@ -131,7 +142,7 @@ const AnalyzePage = () => {
         },
       });
       setDiaryDatas(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -142,14 +153,25 @@ const AnalyzePage = () => {
   };
 
   useEffect(() => {
-    //TODO: 조건 오늘 날짜가 토요일이고 토요일에 일기를 작성했다면 피드백 데이터를 가져온다.
-    if (currentDate.getDay > 0) {
+    if (
+      (currentDate.getDay === 6 &&
+        diaryDatas.some(
+          (diary) => diary.diaryAt === currentDate.toISOString().split("T")[0]
+        )) ||
+      currentDate.getDay === 7
+    ) {
       getFeedbackData();
     } else {
       setFeedbackData("이번주 주간 피드백 데이터가 아직 준비되지 않았아요!");
     }
     getDiaryDatas();
   }, [currentDate]);
+
+  useEffect(() => {
+    if (feedbackData.length === 0) {
+      setFeedbackData("이번주 주간 피드백 데이터가 아직 준비되지 않았아요!");
+    }
+  }, [feedbackData]);
 
   return (
     <div className="main-container">

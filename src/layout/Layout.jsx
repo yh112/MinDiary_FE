@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 
 const Layout = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: "#f5f4f7" }}>
       <Header />
       <Outlet />
     </div>

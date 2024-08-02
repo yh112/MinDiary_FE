@@ -58,7 +58,7 @@ const CalendarPage = ({ currentDate, setEventBool, setCurrentDate, setClickDay, 
           }
         );
         setDummy(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       } catch (err) {
         console.log(err);
       }

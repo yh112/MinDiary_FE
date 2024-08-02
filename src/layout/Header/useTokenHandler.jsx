@@ -19,7 +19,7 @@ const useTokenHandler = () => {
   const handlelogin_tk2 = async () => {
     try {
       const res = await API.get("/api/v1/checkToken", config2);
-      console.log(res);
+      // console.log(res);
     } catch (err) {
       console.log(err);
       if (err.response.data === "refreshToken 만료") {
@@ -28,19 +28,19 @@ const useTokenHandler = () => {
         navigate("/");
       } else if (err.response.data === "Access 토큰 발급") {
         localStorage.setItem("accessToken", err.response.headers.authorization);
-        console.log("Access token 재발급");
+        // console.log("Access token 재발급");
       }
     }
   };
 
   const checkToken = async () => {
     try {
-      console.log(localStorage.getItem("accessToken"));
+      // console.log(localStorage.getItem("accessToken"));
       const res = await API.get("/api/v1/checkToken", config);
-      console.log(res);
+      // console.log(res);
     } catch (err) {
       if (err.response?.data === "만료된 토큰") {
-        console.log("만료된 토큰");
+        // console.log("만료된 토큰");
         await handlelogin_tk2();
       } else {
         navigate("/");

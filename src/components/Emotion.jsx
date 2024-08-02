@@ -38,8 +38,8 @@ function Emotion({ emotionData, type, setEmotion }) {
             <div className="emotion-content">
               <img src={data.src} />
               <div className="emotion-title">
-                <p>{data.emotion}</p>
-                <p style={{ fontWeight: "bold" }}>{data.percent}%</p>
+                <p>{data.label}</p>
+                <p style={{ fontWeight: "bold" }}>{data.value}%</p>
               </div>
             </div>
           )}

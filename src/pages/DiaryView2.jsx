@@ -23,13 +23,13 @@ const CalendarView = () => {
     setClickDay(false);
   };
   useEffect(() => {
-    console.log("useEffect");
+    // console.log("useEffect");
 
     const check_diary_month = async () => {
       const accessToken = localStorage.getItem("accessToken");
       const year = 2024;
       const month = 8;
-      console.log("자료형", typeof year);
+      // console.log("자료형", typeof year);
       checkToken();
       const config = {};
 
@@ -43,7 +43,7 @@ const CalendarView = () => {
             month: month,
           },
         });
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error("Error fetching diary data:", error);
       }

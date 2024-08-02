@@ -16,7 +16,7 @@ const GoogleLoginButton = ({ onLoginSuccess }) => {
         name: user_info.name,
       });
       // http://15.165.116.155:8080/api/v1/account/login
-      console.log("response", response);
+      // console.log("response", response);
       const accessToken = response.headers.authorization;
       const refreshToken = response.headers.refreshtoken;
 
@@ -37,7 +37,7 @@ const GoogleLoginButton = ({ onLoginSuccess }) => {
           <div className="login-container">
             <GoogleLogin
               onSuccess={(res) => {
-                console.log(jwtDecode(res.credential));
+                // console.log(jwtDecode(res.credential));
                 handle_user_authentication(jwtDecode(res.credential));
               }}
               onFailure={(err) => {
