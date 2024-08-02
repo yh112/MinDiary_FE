@@ -9,31 +9,16 @@ import SurprisedImage from "../images/Surprised.png";
 import BoringImage from "../images/Boring.png";
 import axios from "axios";
 import useTokenHandler from "../layout/Header/useTokenHandler";
+import "../styles/AnalyzePage.scss";
 
 const AnalyzePage = () => {
   const { checkToken, config } = useTokenHandler();
   // 받아올 일기 정보들
   const [diaryDatas, setDiaryDatas] = useState([]);
-  const [thisweekData, setThisweekData] = useState(
-    [
-    // { id: "Happy", label: "기쁨", value: 0, color: "#FFE75C" },
-    // { id: "Sad", label: "슬픔", value: 0, color: "#3293D7" },
-    // { id: "Angry", label: "분노", value: 0, color: "#FF6262" },
-    // { id: "Surprised", label: "놀람", value: 0, color: "#FEBB00" },
-    // { id: "Boring", label: "중립", value: 0, color: "#C6C6C6" },
-  ]
-);
+  const [thisweekData, setThisweekData] = useState([]);
 
   // 지난 주 감정 데이터(더미)
-  const [lastweekData, setLastweekData] = useState(
-    [
-    // { id: "Happy", label: "기쁨", value: 30, color: "#FFE75C" },
-    // { id: "Sad", label: "슬픔", value: 2, color: "#3293D7" },
-    // { id: "Angry", label: "분노", value: 15, color: "#FF6262" },
-    // { id: "Surprised", label: "놀람", value: 5, color: "#FEBB00" },
-    // { id: "Boring", label: "중립", value: 20, color: "#C6C6C6" },
-  ]
-);
+  const [lastweekData, setLastweekData] = useState([]);
 
   // 감정 피드백 데이터
   const [feedbackData, setFeedbackData] = useState("");
@@ -58,25 +43,75 @@ const AnalyzePage = () => {
           Authorization: `${accessToken}`,
         },
         params: {
-          endDate: date,
+          endDate: new Date("2024-08-03"),
         },
       });
       console.log(res);
       setThisweekData([
-        { id: "Happy", label: "기쁨", value: res.data.currentAvgHappiness, color: "#FFE75C" },
-        { id: "Sad", label: "슬픔", value: res.data.currentAvgHappiness, color: "#3293D7" },
-        { id: "Angry", label: "분노", value: res.data.currentAvgHappiness, color: "#FF6262" },
-        { id: "Surprised", label: "놀람", value: res.data.currentAvgHappiness, color: "#FEBB00" },
-        { id: "Boring", label: "중립", value: res.data.currentAvgHappiness, color: "#C6C6C6" },
-      ])
+        {
+          id: "Happy",
+          label: "기쁨",
+          value: res.data.currentAvgHappiness,
+          color: "#FFE75C",
+        },
+        {
+          id: "Sad",
+          label: "슬픔",
+          value: res.data.currentAvgSadness,
+          color: "#3293D7",
+        },
+        {
+          id: "Angry",
+          label: "분노",
+          value: res.data.currentAvgAnger,
+          color: "#FF6262",
+        },
+        {
+          id: "Surprised",
+          label: "놀람",
+          value: res.data.currentAvgSurprise,
+          color: "#FEBB00",
+        },
+        {
+          id: "Boring",
+          label: "중립",
+          value: res.data.currentAvgNeutral,
+          color: "#C6C6C6",
+        },
+      ]);
 
       setLastweekData([
-        { id: "Happy", label: "기쁨", value: res.data.prevAvgHappiness, color: "#FFE75C" },
-        { id: "Sad", label: "슬픔", value: res.data.prevAvgHappiness, color: "#3293D7" },
-        { id: "Angry", label: "분노", value: res.data.prevAvgHappiness, color: "#FF6262" },
-        { id: "Surprised", label: "놀람", value: res.data.prevAvgHappiness, color: "#FEBB00" },
-        { id: "Boring", label: "중립", value: res.data.prevAvgHappiness, color: "#C6C6C6" },
-      ])
+        {
+          id: "Happy",
+          label: "기쁨",
+          value: res.data.prevAvgHappiness,
+          color: "#FFE75C",
+        },
+        {
+          id: "Sad",
+          label: "슬픔",
+          value: res.data.prevAvgSadness,
+          color: "#3293D7",
+        },
+        {
+          id: "Angry",
+          label: "분노",
+          value: res.data.prevAvgAnger,
+          color: "#FF6262",
+        },
+        {
+          id: "Surprised",
+          label: "놀람",
+          value: res.data.prevAvgSurprise,
+          color: "#FEBB00",
+        },
+        {
+          id: "Boring",
+          label: "중립",
+          value: res.data.prevAvgNeutral,
+          color: "#C6C6C6",
+        },
+      ]);
       setFeedbackData(res.data.currentWeeklyDetailedFeedback); //주간 피드백
     } catch (err) {
       console.log(err);
@@ -100,14 +135,19 @@ const AnalyzePage = () => {
         emotionType: entry.emotionType,
       }));
       setDiaryDatas(diaryData);
+      console.log(res.data);
     } catch (err) {
       console.log(err);
     }
   };
 
+  const checkValue = (data) => {
+    return data.every((item) => item.value === 0);
+  };
+
   useEffect(() => {
-    if (currentDate.getDay === 6) {
-      // 6 represents Saturday
+    //TODO: 조건 오늘 날짜가 토요일이고 토요일에 일기를 작성했다면 피드백 데이터를 가져온다.
+    if (currentDate.getDay > 0) {
       getFeedbackData();
     } else {
       setFeedbackData("이번주 주간 피드백 데이터가 아직 준비되지 않았아요!");
@@ -120,8 +160,20 @@ const AnalyzePage = () => {
       <h1>EMOTION ANALYSIS</h1>
       <div className="analysis-container">
         <div className="chart-container">
-          <Chart data={thisweekData} isThisWeek={true} />
-          <Chart data={lastweekData} isThisWeek={false} />
+          {checkValue(thisweekData) ? (
+            <div className="chart-container">
+              <div className="no-content">이번주에 작성한 일기가 없습니다.</div>
+            </div>
+          ) : (
+            <Chart data={thisweekData} isThisWeek={true} />
+          )}
+          {checkValue(lastweekData) ? (
+            <div className="chart-container">
+              <div className="no-content">지난주에 작성한 일기가 없습니다.</div>
+            </div>
+          ) : (
+            <Chart data={lastweekData} isThisWeek={false} />
+          )}
         </div>
         <div className="weekly-container">
           <div className="weekly-calendar-container">
