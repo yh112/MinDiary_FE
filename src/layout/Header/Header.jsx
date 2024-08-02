@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Modal from "react-modal";
 import "./header.css";
@@ -12,7 +12,16 @@ Modal.setAppElement("#root");
 const Header = () => {
   const { checkToken } = useTokenHandler();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!localStorage.getItem("accessToken")
+  );
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -24,23 +33,28 @@ const Header = () => {
 
   const handleLogin = () => {
     setIsLoggedIn(true);
+    localStorage.setItem("isLoggedIn", true);
     closeModal();
   };
-  const handlelogout = async () => {
-    const response = await axios.get("/api/v1/account/logout", {
-      headers: {
-        Authorization: `${localStorage.getItem("accessToken")}`,
-      },
-    });
+
+  const handleLogout = async () => {
+    try {
+      await axios.get("/api/v1/account/logout", {
+        headers: {
+          Authorization: `${localStorage.getItem("accessToken")}`,
+        },
+      });
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
   };
 
   const logout = () => {
-    handlelogout();
-    console.log("Logout function called");
+    handleLogout();
     setIsLoggedIn(false);
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    console.log("isLoggedIn state:", isLoggedIn);
+    localStorage.setItem("isLoggedIn", false);
   };
 
   return (
@@ -69,7 +83,7 @@ const Header = () => {
       </div>
       <div className="auth-buttons">
         {isLoggedIn ? (
-          <button className="login-btn" onClick={logout}>
+          <button className="logout-btn" onClick={logout}>
             Log out
           </button>
         ) : (
