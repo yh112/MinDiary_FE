@@ -38,6 +38,7 @@
 <br>
 
 ## :star: 주요 기술
+: Nivo, react-datepicker, date-fns
 <br>
 
 <img src="https://github.com/user-attachments/assets/fb8307f0-a240-421a-a78a-e594930c2d22"/>
