@@ -1,6 +1,6 @@
 ## :fire: 팀명 및 프로젝트 소개
 <p align="center">
-  <img width="200" src="[https://github.com/user-attachments/assets/2ba8c6b9-f3f0-45af-ad05-71b7eb343581](https://prod-files-secure.s3.us-west-2.amazonaws.com/02b71272-1b49-4938-8709-537b662150d4/d3aba3a2-7b4b-4058-8db5-be8cca97c188/image.png)">
+  <img width="200" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/02b71272-1b49-4938-8709-537b662150d4/d3aba3a2-7b4b-4058-8db5-be8cca97c188/image.png">
 </p>
 <p align="center">
   <strong>
