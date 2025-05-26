@@ -1,16 +1,15 @@
 ## :fire: 팀명 및 프로젝트 소개
+
 <p align="center">
-  ![Image](https://github.com/user-attachments/assets/c9e7a21e-70c8-49e5-8da7-66a4a3ab9056)
+  <img src="https://github.com/user-attachments/assets/c9e7a21e-70c8-49e5-8da7-66a4a3ab9056" alt="프로젝트 소개 이미지" width="500"/>
 </p>
+
 <p align="center">
   <strong>
-    - MINDIARY -
-    <br>
+    - MINDIARY -<br>
     현대인의 정신 건강을 위한 감정 일기 서비스
   </strong>
 </p>
-
-
 
 ## :heavy_check_mark: 주제 선정
 <br>
@@ -47,13 +46,14 @@
 
 ## :yellow_heart: UI
 <br>
-  <div align="center">
-    ![Image](https://github.com/user-attachments/assets/402564b3-1683-4aa2-bf19-f3026fd1dc24)
-    ![Image](https://github.com/user-attachments/assets/1ea4bae2-eeab-4f9d-9bd4-a89098345dda)
-  </div>
-  감정 일기 작성 페이지, 주간 감정 분석 통계 페이지
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/402564b3-1683-4aa2-bf19-f3026fd1dc24" alt="감정일기 페이지" width="400"/>
+  <img src="https://github.com/user-attachments/assets/1ea4bae2-eeab-4f9d-9bd4-a89098345dda" alt="주간 감정 분석 통계 페이지" width="400"/>
+</div>
 
-<br>
+<p align="center">
+  감정 일기 작성 페이지, 주간 감정 분석 통계 페이지
+</p>
 
 ## :smile: 팀원
 <table>
