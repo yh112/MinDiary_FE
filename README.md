@@ -11,42 +11,49 @@
   </strong>
 </p>
 
+---
+
 ## :heavy_check_mark: 주제 선정
-<br>
 
-최근 우울증에 빠진 2030 현대인들이 날로 증가하고 있다. 이러한 현대인의 우울증 문제는 어떻게 해결할 수 있을까?
+최근 우울증에 빠진 2030 현대인들이 날로 증가하고 있습니다. 이러한 정신 건강 문제를 어떻게 해결할 수 있을까요?
 
-**저널테라피** <br>
-성찰적 글쓰기인 저널테라피는 자신에 대한 이야기를 써내려가며 심리적, 감정적, 육체적 문제 해결과 치유를 촉진하고 나아가 자아발견과 성장을 목적으로 하는 글쓰기 치료의 한 부분이다.
+### 💡 저널테라피란?
 
-**MINDIARY**는 감정일기를 작성하고 일기를 바탕으로 한 AI 감정분석을 받아 나 자신에 대해 이해하고 고착화된 문제를 스스로 해결할 수 있게 돕습니다.
+> **저널테라피**는 성찰적 글쓰기의 일환으로, 감정을 글로 표현함으로써 심리적, 감정적, 육체적 문제 해결과 치유를 돕는 심리 치료 기법입니다.
 
-<br>
+**MINDIARY**는 감정 일기와 AI 감정 분석을 결합하여 사용자가 스스로 감정을 인식하고, 고착화된 문제를 해소할 수 있도록 지원합니다.
+
+---
 
 ## ✨ 주요 기능
-<br>
 
-**감정 일기**  
-: 사용자가 솔직한 감정을 **감정 일기**라는 형태로 작성합니다.
+### 📝 감정 일기
+- 사용자가 솔직한 감정을 자유롭게 작성
 
-**감정 시각화 및 요약**  
-: 작성된 감정 일기 내용을 바탕으로 AI가 사용자의 감정을 분석합니다. 사용자가 스스로 감정을 인식할 수 있도록 **감정 분석 정보를 시각화**하며, **감정 일기 한 줄 요약**을 함께 제공합니다.
+### 📊 감정 시각화 및 요약
+- AI 분석 기반 감정 추출
+- 감정 데이터를 Nivo 차트로 시각화
+- 한 줄 감정 요약 제공
 
-**AI 감정 피드백**  
-: 일주일 단위의 AI 감정 요약을 바탕으로, 프롬프트 엔지니어링된 GPT를 통해 **감정추이 분석과 정서적 피드백**을 제공합니다.
+### 💬 AI 감정 피드백
+- GPT 기반 주간 감정 분석 및 피드백 제공
+- 일별 감정 통계 및 추이 분석 기능
 
-<br>
+---
 
 ## :star: 주요 기술
-: Nivo, react-datepicker, date-fns
-<br>
 
-<img src="https://github.com/user-attachments/assets/fb8307f0-a240-421a-a78a-e594930c2d22"/>
+- **React.js** – SPA 기반 UI 구현
+- **Nivo** – 감정 통계 시각화
+- **react-datepicker** – 날짜 선택 기능
+- **date-fns** – 날짜 계산 유틸리티
+- **GPT API** – 감정 피드백 생성
+- **AWS** – 배포 및 백엔드 연동
 
-<br>
+---
 
-## :yellow_heart: UI
-<br>
+## :yellow_heart: UI 미리보기
+
 <div align="center">
   <img src="https://github.com/user-attachments/assets/402564b3-1683-4aa2-bf19-f3026fd1dc24" alt="감정일기 페이지" width="400"/>
   <img src="https://github.com/user-attachments/assets/1ea4bae2-eeab-4f9d-9bd4-a89098345dda" alt="주간 감정 분석 통계 페이지" width="400"/>
@@ -56,16 +63,11 @@
   감정 일기 작성 페이지, 주간 감정 분석 통계 페이지
 </p>
 
-## :smile: 팀원
-<table>
-  <tr> 
-    <th align='center'><strong>FRONT-END</strong></th> 
-    <th align='center'><strong>BACK-END</strong></th> 
-    <th align='center'><strong>DESIGN</strong></th> 
-  </tr>
-  <tr> 
-    <td align='center'><strong>명이현, 박준혁, 성지훈</strong></td> 
-    <td align='center'><strong>박준용, 차경태</strong></td> 
-    <td align='center'><strong>강나영</strong></td> 
-  </tr>
-</table>
+---
+
+## :smile: 팀원 소개
+
+| FRONT-END | BACK-END | DESIGN |
+|-----------|-----------|--------|
+| 명이현, 박준혁, 성지훈 | 박준용, 차경태 | 강나영 |
+
