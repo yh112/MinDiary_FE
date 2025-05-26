@@ -1,6 +1,6 @@
 ## :fire: 팀명 및 프로젝트 소개
 <p align="center">
-  <img width="200" src="https://github.com/user-attachments/assets/2ba8c6b9-f3f0-45af-ad05-71b7eb343581">
+  <img width="200" src="[https://github.com/user-attachments/assets/2ba8c6b9-f3f0-45af-ad05-71b7eb343581](https://prod-files-secure.s3.us-west-2.amazonaws.com/02b71272-1b49-4938-8709-537b662150d4/d3aba3a2-7b4b-4058-8db5-be8cca97c188/image.png)">
 </p>
 <p align="center">
   <strong>
@@ -49,20 +49,12 @@
 <br>
 
 <details>
-  <summary><b>와이어프레임&디자인</b></summary>
-  <div markdown="1">
-  <div align="center">
-    <img src="https://github.com/user-attachments/assets/50085be1-25f5-4ed7-be87-f2137019339b"/>
-    <img src="https://github.com/user-attachments/assets/c6d0f876-6381-4d33-a268-d067aa7e9aff"/>
-    <img src="https://github.com/user-attachments/assets/80ba20cb-faa5-4a90-bc9b-10daa3ca98ea"/>
-    <img src="https://github.com/user-attachments/assets/a76144ae-e1dc-4861-9762-36a4d8694879"/>
-    <img src="https://github.com/user-attachments/assets/0c8e3bfa-46a5-412e-be57-2e28b2397431"/>
-  </div>
-  </div>
-</details>
-<details>
   <summary><b>맡은 파트</b></summary>
   <div markdown="1">
+    <div align="center">
+      <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/02b71272-1b49-4938-8709-537b662150d4/a8abe0bf-6183-49b5-9e54-abc81ee8bee4/image.png"/>
+      <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/02b71272-1b49-4938-8709-537b662150d4/9d9d21a9-1dfe-4229-aae5-4663d6d5d1ee/image.png"/>
+    </div>
   감정 일기 작성 페이지, 주간 감정 분석 통계 페이지
   </div>
 </details>
