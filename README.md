@@ -1,6 +1,6 @@
 ## :fire: 팀명 및 프로젝트 소개
 <p align="center">
-  <img width="200" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/02b71272-1b49-4938-8709-537b662150d4/d3aba3a2-7b4b-4058-8db5-be8cca97c188/image.png">
+  ![Image](https://github.com/user-attachments/assets/c9e7a21e-70c8-49e5-8da7-66a4a3ab9056)
 </p>
 <p align="center">
   <strong>
@@ -47,17 +47,11 @@
 
 ## :yellow_heart: UI
 <br>
-
-<details>
-  <summary><b>맡은 파트</b></summary>
-  <div markdown="1">
-    <div align="center">
-      <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/02b71272-1b49-4938-8709-537b662150d4/a8abe0bf-6183-49b5-9e54-abc81ee8bee4/image.png"/>
-      <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/02b71272-1b49-4938-8709-537b662150d4/9d9d21a9-1dfe-4229-aae5-4663d6d5d1ee/image.png"/>
-    </div>
-  감정 일기 작성 페이지, 주간 감정 분석 통계 페이지
+  <div align="center">
+    ![Image](https://github.com/user-attachments/assets/402564b3-1683-4aa2-bf19-f3026fd1dc24)
+    ![Image](https://github.com/user-attachments/assets/1ea4bae2-eeab-4f9d-9bd4-a89098345dda)
   </div>
-</details>
+  감정 일기 작성 페이지, 주간 감정 분석 통계 페이지
 
 <br>
 
